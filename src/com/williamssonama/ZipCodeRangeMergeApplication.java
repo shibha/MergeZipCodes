@@ -31,6 +31,7 @@ package com.williamssonama;
 
 import java.util.*;
 
+
 public class ZipCodeRangeMergeApplication {
 
     public static void main(String[] args) {
@@ -48,7 +49,7 @@ public class ZipCodeRangeMergeApplication {
             return;
         }
 
-        List<ZipCodeRange> zipCodesMerged = mergeZipCodeRanges(zipCodes);
+        List<ZipCodeRange> zipCodesMerged = new ZipCodeRangeMergeApplication().mergeZipCodeRanges(zipCodes);
 
         System.out.println("The merged ZipCodeRange is : " + zipCodesMerged);
     }
@@ -58,7 +59,7 @@ public class ZipCodeRangeMergeApplication {
      * @param zipCodes
      * @return
      */
-    private static List<ZipCodeRange> mergeZipCodeRanges(List<ZipCodeRange> zipCodes) {
+    public List<ZipCodeRange> mergeZipCodeRanges(List<ZipCodeRange> zipCodes) {
         List<ZipCodeRange> zipCodesMerged = new ArrayList<>();
 
         sortZipCodeRange(zipCodes);
@@ -159,62 +160,9 @@ public class ZipCodeRangeMergeApplication {
     }
 }
 
-/**
- * A class to represent a ZipCodeRange which will have a lower and upper bound
- */
-
-class ZipCodeRange {
-    private int upper;
-
-    public int getUpper() {
-        return upper;
-    }
-
-    private int lower;
-
-    public int getLower() {
-        return lower;
-    }
-
-    ZipCodeRange(int lower, int upper) {
-        this.upper = upper;
-        this.lower = lower;
-    }
-
-    public String toString() {
-        return "[" + lower + "," + upper + "]";
-    }
-
-}
-
-/**
- * ZipCodeValidationUtils is a utility class to perform utility checks on the input provided to
- * ZipCodeRangeMergeApplication
- */
-
-class ZipCodeValidationUtils {
-
-    static boolean isValidZipCode(String zipCodeStr) {
-        boolean isValidPositiveInteger = isValidPositiveInteger(zipCodeStr);
-        boolean isNot5Digit = zipCodeStr.length() != 5 ? true : false;
-
-        if (isNot5Digit) {
-            System.out.println("The ZipCode bounds have to be 5 digit");
-            return false;
-        }
-        return isValidPositiveInteger;
-    }
-
-    static boolean isValidPositiveInteger(String numStr) {
-        int intVal;
-        try {
-            intVal = Integer.parseInt(numStr);
-        } catch (NumberFormatException e) {
-            return false;
-        }
-
-        return intVal > 0 ? true : false;
-    }
 
 
-}
+
+
+
+
